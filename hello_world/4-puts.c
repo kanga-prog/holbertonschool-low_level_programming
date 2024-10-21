@@ -1,8 +1,10 @@
 #include <stdio.h>
+
 /**
- *function_nain-La fonction main est le point d'entrée d'un programme en C .
- *function_return-La ligne return;dans une fonction main en C sert à indiquer que le programme s'est terminé avec succès.
- */
+* main - entry point
+* Return: return 0 if success
+*/
+
 int main(void)
 {
 puts("\"Programming is like building a multilingual puzzle");
