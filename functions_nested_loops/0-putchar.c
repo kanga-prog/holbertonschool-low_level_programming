@@ -1,11 +1,15 @@
-#include <stdio.h>
+#include "main.h"
+
 /**
- * main - Entry point
- * Description: Generates random number and prints the last digit
+ * _putchar - writes a character to stdout
+ * @c: The character to print
+ *
+ * Description: _putchar is generally used to write a character.
+ * Prototype: This function indicates its name, return type, and parameters.
+ *
  * Return: Always 0 (Success)
  */
-int main(void)
+int _putchar(char c)
 {
-    printf("_putchar\n");
-    return 0;
+return (write(1, &c, 1));
 }
