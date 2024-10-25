@@ -1,12 +1,10 @@
-#include "main.h"
+#include <stdio.h>
 
-/**
- * main - check the code
- *
- * Return: Always 0.
- */
-int _print_alphabet(void)
+// Function prototype
+void print_alphabet(void);
+
+int main(void)
 {
-    _print_alphabet();
-    return (0);
+        print_alphabet();
+        return (0);
 }

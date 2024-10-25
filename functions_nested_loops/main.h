@@ -6,5 +6,5 @@
  * Desc: Header file containing declarations for all functions
  */
 int _putchar(char c);/*fonction putchar*/
-int _print_alphabet(void);/*fonction printf*/
+void _print_alphabet(void);/*fonction printf*/
 #endif/* main_h */
