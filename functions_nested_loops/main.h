@@ -5,6 +5,7 @@
  * Auth: KANGA KOUAKOU BRICE
  * Desc: Header file containing declarations for all functions
  */
+void print_alphabet(void);/*fonction printf*/
 int _putchar(char c);/*fonction putchar*/
-void _print_alphabet(void);/*fonction printf*/
+
 #endif/* main_h */
