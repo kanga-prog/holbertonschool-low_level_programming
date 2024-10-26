@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <unistd.h>
 #include "main.h"
 
 /**
@@ -13,17 +13,17 @@ int print_sign(int n)
 {
 	if (n > 0)
 	{
-		putchar('+'); /* Print '+' for positive numbers */
-		return (1);   /* Return 1 */
+		write(1, "+", 1); /* Print '+' for positive numbers */
+		return (1);       /* Return 1 */
 	}
 	else if (n == 0)
 	{
-		putchar('0'); /* Print '0' for zero */
-		return (0);   /* Return 0 */
+		write(1, "0", 1); /* Print '0' for zero */
+		return (0);       /* Return 0 */
 	}
 	else
 	{
-		putchar('-'); /* Print '-' for negative numbers */
-		return (-1);  /* Return -1 */
+		write(1, "-", 1); /* Print '-' for negative numbers */
+		return (-1);      /* Return -1 */
 	}
 }
