@@ -7,13 +7,25 @@ void times_table(void)
 {
 	int i;          /* Variable for the multiplier */
 	int result;     /* Variable for the result */
-	char buffer[15]; /* Buffer to hold the output string */
+	char buffer[4]; /* Buffer to hold the output string */
 	int len;        /* Length of the output string */
 
 	for (i = 0; i <= 9; i++)
 	{
 		result = 9 * i; /* Calculate the result */
-		len = snprintf(buffer, sizeof(buffer), "%d", result); /* Format the result */
+
+		/* Convert the result to a string */
+		if (result < 10)
+		{
+			buffer[0] = result + '0'; /* Single digit */
+			len = 1;
+		}
+		else
+		{
+			buffer[0] = (result / 10) + '0'; /* Tens place */
+			buffer[1] = (result % 10) + '0'; /* Units place */
+			len = 2;
+		}
 
 		write(1, buffer, len); /* Write the result to stdout */
 
