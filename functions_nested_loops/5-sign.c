@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
@@ -15,12 +16,12 @@ int print_sign(int n)
 		putchar('+'); /* Print '+' for positive numbers */
 		return (1);   /* Return 1 */
 	}
-	if (n == 0)
+	else if (n == 0)
 	{
 		putchar('0'); /* Print '0' for zero */
 		return (0);   /* Return 0 */
 	}
-	if
+	else
 	{
 		putchar('-'); /* Print '-' for negative numbers */
 		return (-1);  /* Return -1 */
