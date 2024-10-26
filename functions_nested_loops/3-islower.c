@@ -8,10 +8,10 @@
  */
 int _islower(int c)
 {
-	if (c >= 'a' && c <= 'z')  /* Check if c is between 'a' and 'z' */
+	if (c >= 'a' && c <= 'z') /* Check if c is between 'a' and 'z' */
 	{
-		return (1);  /* c is lowercase */
+		return (1); /* c is lowercase */
 	}
-	return (0);  /* c is not lowercase */
+	return (0); /* c is not lowercase */
 }
 
