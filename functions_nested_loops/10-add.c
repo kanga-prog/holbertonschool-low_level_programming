@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include<stdio.h>
+#include "main.h"
 
 /**
  * add_integers - Adds two integers
@@ -23,5 +24,6 @@ int main(void)
 
 	result = add_integers(3, 5);
 	printf("Le résultat est : %d\n", result);
+
 	return (0);
 }
