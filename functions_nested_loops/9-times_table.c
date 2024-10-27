@@ -5,7 +5,7 @@
  *
  * Return: void
  */
-void print_multiplication_table(void)
+void times_table(void)
 {
 	char buffer[6]; /* Buffer to hold the output string */
 	int len;        /* Length of the output string */
