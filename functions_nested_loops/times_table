@@ -1,14 +1,14 @@
-#include <unistd.h>
+#include "main.h"
 
-/* Function prototype */
-void times_table(void);
+
+void times_table(void)
 
 /**
  * main - Entry point of the program.
  *
  * Return: Always 0.
  */
-int main(void)
+
 {
 	times_table(); /* Call the function to print the table */
 	return (0);
