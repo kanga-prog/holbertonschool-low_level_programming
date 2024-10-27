@@ -6,7 +6,7 @@
  */
 void print_to_98(int n)
 {
-	int i;
+	int i;  /* Declare loop variable outside */
 
 	if (n < 98)
 	{
@@ -39,6 +39,6 @@ void print_to_98(int n)
  */
 int main(void)
 {
-	print_to_98(95);
+	print_to_98(95);  /* Example usage */
 	return (0);
 }
