@@ -1,13 +1,13 @@
 #include <stdio.h>
 
 /**
- *Ne pas inclure de fonction main ici, ou la renommer
+ * add - Adds two integers
+ * @a: first integer
+ * @b: second integer
  *
- *Logique de votre fonction ici
- *
+ * Return: the sum of a and b
  */
-void some_function(void)
+int add(int a, int b)
 {
-
-	printf("Ceci est une fonction de main_0.c\n");
+	return (a + b);
 }
