@@ -1,13 +1,6 @@
 #include <stdio.h>
 
-/**
- * _putchar - Outputs a character
- * @c: The character to print
- */
-void _putchar(char c)
-{
-	putchar(c);
-}
+void _putchar(char c);
 
 /**
  * print_number - Prints an integer
@@ -61,6 +54,15 @@ void print_to_98(int n)
 }
 
 /**
+ * _putchar - Outputs a character
+ * @c: The character to print
+ */
+void _putchar(char c)
+{
+	putchar(c);
+}
+
+/**
  * main - Entry point for the program
  * Return: Always 0
  */
@@ -69,3 +71,4 @@ int main(void)
 	print_to_98(95);  /* Example usage */
 	return (0);
 }
+
