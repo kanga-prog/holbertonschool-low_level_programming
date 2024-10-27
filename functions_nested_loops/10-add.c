@@ -1,29 +1,13 @@
-#include<stdio.h>
-#include "main.h"
+#include <stdio.h>
 
 /**
- * add_integers - Adds two integers
- * @a: first integer
- * @b: second integer
+ *Ne pas inclure de fonction main ici, ou la renommer
  *
- * Return: the sum of a and b
- */
-int add_integers(int a, int b)
-{
-	return (a + b);
-}
-
-/**
- * main - Entry point of the program
+ *Logique de votre fonction ici
  *
- * Return: Always 0 (Success)
  */
-int main(void)
+void some_function(void)
 {
-	int result;
 
-	result = add_integers(3, 5);
-	printf("Le résultat est : %d\n", result);
-
-	return (0);
+	printf("Ceci est une fonction de main_0.c\n");
 }
