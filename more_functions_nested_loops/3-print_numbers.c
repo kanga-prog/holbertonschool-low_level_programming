@@ -6,11 +6,13 @@
  *
  * Return: Nothing.
  */
-void print_number(void)
+void print_numbers(void)
 {
-	for (int a = 0; a < 10; a++)
+	int a;  /* Variable to hold the current number */
+
+	for (a = 0; a < 10; a++)
 	{
-	putchar(a + '0');  // Convertit l'entier en caractère et imprime
+	putchar(a + '0');  /* Convert the integer to character and print */
 	}
-	putchar('\n');  // Ajoute une nouvelle ligne à la fin
+	putchar('\n');  /* Print a new line at the end */
 }
