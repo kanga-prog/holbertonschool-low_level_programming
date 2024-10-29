@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stddef.h>
 
 /**
  * _isupper - checks if a character is uppercase
@@ -7,7 +8,7 @@
  * Return: 1 if c is uppercase, 0 otherwise
  */
 int _isupper(int c)
-	{
+{
 	/* Check if the character is between 'A' and 'Z' */
 	if (c >= 'A' && c <= 'Z')
 	{
@@ -30,7 +31,7 @@ int main(void)
 {
 	/* Test the function with different characters */
 	char test_chars[] = {'A', 'a', 'Z', '1', '!', 'M'};
-	int i;
+	size_t i;
 
 	for (i = 0; i < sizeof(test_chars) / sizeof(test_chars[0]); i++)
 	{
