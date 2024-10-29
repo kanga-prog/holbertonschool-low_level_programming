@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.ih>
 #include <stddef.h>
 
 /**
@@ -12,14 +12,13 @@ int _isupper(int c)
 	/* Check if the character is between 'A' and 'Z' */
 	if (c >= 'A' && c <= 'Z')
 	{
-	putchar('1'); /* Print '1' if c is uppercase */
+	return (1);
 	}
 	else
 	{
-	putchar('0'); /* Print '0' otherwise */
+	return ('0');
 	}
 
-	return (0); /* Return 0 as a general exit status (not used here) */
 }
 
 /**
