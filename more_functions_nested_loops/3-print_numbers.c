@@ -8,15 +8,9 @@
  */
 void print_number(void)
 {
-	putchar('0');
-	putchar('1');
-	putchar('2');
-	putchar('3');
-	putchar('4');
-	putchar('5');
-	putchar('6');
-	putchar('7');
-	putchar('8');
-	putchar('9');
-	putchar('\n');
+	for (int a = 0; a < 10; a++)
+	{
+	putchar(a + '0');  // Convertit l'entier en caractère et imprime
+	}
+	putchar('\n');  // Ajoute une nouvelle ligne à la fin
 }
