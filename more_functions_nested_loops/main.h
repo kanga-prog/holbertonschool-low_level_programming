@@ -5,5 +5,5 @@
  * Auth: KANGA KOUAKOU BRICE
  * Desc: Header file containing declarations for all functions
  */
-int _islower(int c);
+int _isupper(int c);
 #endif/* main_h */
