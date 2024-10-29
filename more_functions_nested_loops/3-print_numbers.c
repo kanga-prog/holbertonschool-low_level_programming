@@ -11,7 +11,7 @@ void print_number(void)
 
 	for (a = 0; a < 10; a++)
 	{
-	_putchar(a + '0'); // Utilise _putchar pour imprimer chaque chiffre
+	_putchar(a + '0');
 	}
-	_putchar('\n'); // Ajoute une nouvelle ligne à la fin
+	_putchar('\n');
 }
