@@ -15,24 +15,3 @@ int _isupper(int c)
 	}
 	return (0);
 }
-
-/**
- * main - Entry point of the program.
- *
- * Return: Always 0 (Success).
- */
-int main(void)
-{
-	char letter;
-
-	for (letter = 'A'; letter <= 'Z'; letter++)
-	{
-	putchar(letter);
-	putchar(':');
-	putchar(' ');
-	putchar(_isupper(letter) + '0');
-	putchar('\n');
-	}
-
-	return (0);
-}
