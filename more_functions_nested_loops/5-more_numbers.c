@@ -1,3 +1,4 @@
+#include<stdio>
 #include "main.h"
 
 /**
@@ -7,7 +8,7 @@
  * with each number followed by a space.
  * A new line is printed after each set of numbers.
  */
-void more_numbers(void)
+int main(void)
 {
 	int i, j;
 
