@@ -17,11 +17,14 @@ void more_numbers(void)
 		{
 			if (j > 9)
 			{
-				_putchar('1'); /* Affiche '1' pour les nombres de 10 à 14 */
+				_putchar('1'); /* Print tens place */
 			}
-			_putchar((j % 10) + '0'); /* Affiche l'unité */
-			_putchar(' '); /* Espace entre les nombres */
+			_putchar((j % 10) + '0'); /* Print units place */
+			if (j < 14)
+			{
+				_putchar(' '); /* Space between numbers */
+			}
 		}
-		_putchar('\n'); /* Nouvelle ligne après chaque série */
+		_putchar('\n'); /* New line after each series */
 	}
 }
