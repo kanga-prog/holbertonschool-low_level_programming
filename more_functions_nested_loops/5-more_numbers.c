@@ -22,7 +22,7 @@ void more_numbers(void)
 			_putchar((j % 10) + '0'); /* Print units place */
 			if (j < 14)
 			{
-				_putchar(' '); /* Space between numbers */
+				write(' '); /* Space between numbers */
 			}
 		}
 		_putchar('\n'); /* New line after each series */
