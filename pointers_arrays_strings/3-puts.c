@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <stdio.h>
 
 /**
@@ -6,10 +7,10 @@
  */
 void _puts(char *str)
 {
-	while (*str != '\0')
-	{
-		putchar(*str);
-		str++;
-	}
-	putchar('\n');
+    while (*str != '\0')
+    {
+        write(1, str, 1);
+        str++;
+    }
+    write(1, "\n", 1);
 }
