@@ -1,3 +1,4 @@
+#include <unistd.h>  // For the write function
 #include <stdio.h>
 
 /**
@@ -10,8 +11,8 @@ void _puts(char *str)
 {
 	while (*str != '\0')  /* Iterate through each character of the string */
 	{
-		putchar(*str);    /* Print the current character */
-		str++;            /* Move to the next character */
+		write(1, str, 1);  /* Write the current character to stdout */
+		str++;              /* Move to the next character */
 	}
-	putchar('\n');        /* Print a new line at the end */
+	write(1, "\n", 1);      /* Write a new line at the end */
 }
