@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <stdio.h>
 
 /**
@@ -20,8 +21,8 @@ void print_rev(char *s)
 	while (s > start)
 	{
 		s--;  /* Move back one character */
-		putchar(*s);  /* Print the current character */
+		write(1, s, 1);  /* Write the current character to stdout */
 	}
 
-	putchar('\n');  /* Print a new line at the end */
+	write(1, "\n", 1);  /* Write a new line at the end */
 }
