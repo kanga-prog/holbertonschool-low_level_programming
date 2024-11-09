@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> /* Pour utiliser atoi */
 
 /**
- * main - multiplie deux nombres passés en argument
- * @argc: nombre d'arguments passés
- * @argv: tableau des arguments
+ * main - Multiplie deux nombres passés en argument
+ * @argc: Nombre d'arguments passés
+ * @argv: Tableau des arguments
  *
  * Return: 0 si succès, 1 en cas d'erreur
  */
@@ -23,15 +23,10 @@ int main(int argc, char *argv[])
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[2]);
 
-	/* Vérifier si la conversion a échoué (atoi retourne 0 en cas d'échec) */
-	if (num1 == 0 || num2 == 0)
-	{
-		printf("Error\n");
-		return (1);
-	}
-
-	/* Effectuer la multiplication et afficher le résultat */
+	/* Effectuer la multiplication */
 	result = num1 * num2;
+
+	/* Afficher le résultat */
 	printf("%d\n", result);
 
 	return (0);
