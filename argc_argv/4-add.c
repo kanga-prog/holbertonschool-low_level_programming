@@ -1,66 +1,46 @@
 #include <stdio.h>
-#include <stdlib.h> /* Pour utiliser atoi */
-#include <ctype.h>  /* Pour vérifier si un caractère est un chiffre */
+#include <stdlib.h>
+#include <ctype.h>
 
 /**
- * is_digit_string - Vérifie si une chaîne contient uniquement des chiffres.
- * @str: La chaîne à vérifier.
+ * main - Adds positive numbers
  *
- * Return: 1 si la chaîne est un nombre valide, sinon 0.
- */
-int is_digit_string(char *str)
-{
-	int i = 0;
-
-	/* Si la chaîne est vide, ce n'est pas un nombre valide */
-	if (str[i] == '\0')
-		return (0);
-
-	/* Vérifier chaque caractère pour s'assurer qu'il est un chiffre */
-	while (str[i] != '\0')
-	{
-		if (!isdigit(str[i]))  /* Si un caractère n'est pas un chiffre */
-			return (0);
-		i++;
-	}
-
-	return (1);
-}
-
-/**
- * main - Additionne des nombres passés en arguments.
- * @argc: Nombre d'arguments passés.
- * @argv: Tableau des arguments.
+ * @argc: The number of command-line arguments
+ * @argv: An array of command-line argument strings
  *
- * Return: 0 si succès, 1 en cas d'erreur.
+ * Return: 0 if the program runs successfully, 1 if an error occurs
  */
 int main(int argc, char *argv[])
 {
-	int i, sum = 0;
+	int sum = 0;
+	int i, j;
 
-	/* Vérifier si des arguments ont été passés */
+	/* If no arguments are passed (except the program name), print 0 */
 	if (argc == 1)
 	{
 		printf("0\n");
-		return (0);  /* Aucun argument passé, afficher 0 et retourner 0 */
+		return (0);
 	}
 
-	/* Additionner les nombres */
+	/* Loop through all arguments (excluding the program name argv[0]) */
 	for (i = 1; i < argc; i++)
 	{
-		/* Vérifier si l'argument est un nombre valide */
-		if (!is_digit_string(argv[i]))
+		/* Check if each argument contains only digits */
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			printf("Error\n");
-			return (1);  /* Si un argument n'est pas un nombre valide, afficher Error */
+			if (!isdigit(argv[i][j]))
+			{
+				/* If any character is not a digit, print "Error" and exit */
+				printf("Error\n");
+				return (1);
+			}
 		}
 
-		/* Convertir l'argument en entier et l'ajouter à la somme */
+		/* Add the value of the argument to the sum */
 		sum += atoi(argv[i]);
 	}
 
-	/* Afficher le résultat */
+	/* Print the sum of the numbers */
 	printf("%d\n", sum);
-
-	return (0);  /* Retourner 0 en cas de succès */
+	return (0);
 }
