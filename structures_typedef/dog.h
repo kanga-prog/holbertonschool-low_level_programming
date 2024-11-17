@@ -1,12 +1,24 @@
 #ifndef DOG_H
 #define DOG_H
 
-/* Définition de la structure dog */
-typedef struct dog
+/*
+ * @name: Le nom du chien (chaîne de caractères).
+ * @age: L'âge du chien en années (type float).
+ * @owner: Le propriétaire du chien (chaîne de caractères).
+ *
+ */
+struct dog /*Description:informations du chien,nom,age et proprietaire*/
 {
-	char *name;   /* Nom du chien */
-	float age;    /* Âge du chien */
-	char *owner;  /* Propriétaire du chien */
-} dog_t;
+	char *name;
+	float age;
+	char *owner;
+};
+
+/*
+ * Description de init_dog:
+ * Initialise les champs de la structure `dog` avec les valeurs fournies.
+ */
+void init_dog(struct dog *d, char *name, float age, char *owner);
 
 #endif /* DOG_H */
+
