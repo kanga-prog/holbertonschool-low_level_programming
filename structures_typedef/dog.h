@@ -2,23 +2,30 @@
 #define DOG_H
 
 /*
+ * File: dog.h
+ * Auth: kanga brice
+ * Desc: header file that defines a new type struct
+ */
+
+/**
+ * struct dog - a new type describing a dog.
  * @name: Le nom du chien (chaîne de caractères).
  * @age: L'âge du chien en années (type float).
  * @owner: Le propriétaire du chien (chaîne de caractères).
- *
  */
-struct dog /*Description:informations du chien,nom,age et proprietaire*/
+struct dog
 {
 	char *name;
 	float age;
 	char *owner;
 };
 
-/*
- * Description de init_dog:
- * Initialise les champs de la structure `dog` avec les valeurs fournies.
+/**
+ * dog_t - Typedef for struct dog
  */
+typedef struct dog dog_t;
+
 void init_dog(struct dog *d, char *name, float age, char *owner);
+void print_dog(struct dog *d);
 
-#endif /* DOG_H */
-
+#endif
