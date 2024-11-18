@@ -1,6 +1,8 @@
 #ifndef DOG_H
 #define DOG_H
 
+#include <stdio.h>
+
 /*
  * File: dog.h
  * Auth: kanga brice
@@ -26,6 +28,8 @@ struct dog
 typedef struct dog dog_t;
 
 void init_dog(struct dog *d, char *name, float age, char *owner);
-void print_dog(struct dog *d);
+/* Function prototypes */
+dog_t *new_dog(char *name, float age, char *owner);
+void print_dog(dog_t *d);
 
 #endif
