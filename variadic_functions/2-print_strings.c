@@ -1,39 +1,48 @@
-#include <stdio.h>
 #include <stdarg.h>
+#include <stdio.h>
 
 /**
- * print_strings - Prints strings followed by a separator and a newline.
- * @separator: The string to be printed between strings.
- * @n: The number of strings to be printed.
- * 
- * Description: This function prints the strings passed as arguments,
- * separated by the given separator string. If the separator is NULL, 
- * no separator is printed between the strings. If any string is NULL,
- * it is replaced with "(nil)". A newline is printed at the end of the output.
+ * print_strings - Affiche des chaînes de caractères,
+ * suivies d'un nouveau ligne.
+ * @separator: Le séparateur à afficher entre
+ * les chaînes de caractères.
+ * @n: Le nombre de chaînes de caractères à afficher.
+ *
+ * Description: Cette fonction accepte un nombre
+ * variable de chaînes de caractères.
+ * Elle affiche chaque chaîne avec un séparateur entre elles. Si chaîne est
+ * NULL, "(nil)" est affiché à la place. La fonction termine par l'affichage
+ * d'une nouvelle ligne.
  */
+
 void print_strings(const char *separator, const unsigned int n, ...)
 {
-    va_list args;
-    unsigned int i;
-    const char *str;
+	va_list args;
+	unsigned int i;
+	char *str;
 
-    va_start(args, n);
+	/* Initialiser va_list pour accéder aux arguments variables*/
+	va_start(args, n);
 
-    for (i = 0; i < n; i++)
-    {
-        str = va_arg(args, const char*);
+	/* Parcourir chaque argument*/
+	for (i = 0; i < n; i++)
+	{
+		/* Obtenir la chaîne de caractères actuelle*/
+		str = va_arg(args, char *);
 
-        if (i > 0 && separator != NULL)
-            printf("%s", separator);
+		if (i > 0 && separator != NULL)
+			printf("%s", separator);
 
-        if (str == NULL)
-            printf("(nil)");
-        else
-            printf("%s", str);
-    }
+		/* Afficher la chaîne ou (nil) si la chaîne est NULL*/
+		if (str == NULL)
+			printf("(nil)");
+		else
+			printf("%s", str);
+	}
 
-    printf("\n");
+	/* Afficher une nouvelle ligne à la fin*/
+	printf("\n");
 
-    va_end(args);
+	/* Nettoyer va_list*/
+	va_end(args);
 }
-
