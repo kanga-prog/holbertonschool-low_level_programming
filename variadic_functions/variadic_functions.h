@@ -5,7 +5,8 @@
 
 /* Prototype de la fonction sum_them_all */
 int sum_them_all(const unsigned int n, ...);
-
+/* Prototype for print_numbers function */
+void print_numbers(const char *separator, const unsigned int n, ...);
 /* Prototype de la fonction _putchar */
 int _putchar(char c);
 
