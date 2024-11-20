@@ -1,4 +1,5 @@
 #include "3-calc.h"
+#include <stddef.h>  /* Include for NULL */
 
 /**
  * get_op_func - Selects the correct function to perform the operation.
