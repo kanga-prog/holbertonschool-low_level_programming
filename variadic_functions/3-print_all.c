@@ -2,41 +2,35 @@
 #include <stdio.h>
 
 /**
- * print_char - Affiche un caractère.
- * @args: Liste d'arguments.
+ * print_char - Prints a character.
+ * @args: The list of arguments.
  */
 void print_char(va_list args)
 {
-	char c = va_arg(args, int);
-
-	printf("%c", c);
+	printf("%c", va_arg(args, int));
 }
 
 /**
- * print_int - Affiche un entier.
- * @args: Liste d'arguments.
+ * print_int - Prints an integer.
+ * @args: The list of arguments.
  */
 void print_int(va_list args)
 {
-	int i = va_arg(args, int);
-
-	printf("%d", i);
+	printf("%d", va_arg(args, int));
 }
 
 /**
- * print_float - Affiche un flottant.
- * @args: Liste d'arguments.
+ * print_float - Prints a float.
+ * @args: The list of arguments.
  */
 void print_float(va_list args)
 {
-	float f = va_arg(args, double);
-
-	printf("%f", f);
+	printf("%f", va_arg(args, double));
 }
 
 /**
- * print_string - Affiche une chaîne de caractères.
- * @args: Liste d'arguments.
+ * print_string - Prints a string.
+ * @args: The list of arguments.
  */
 void print_string(va_list args)
 {
@@ -49,33 +43,36 @@ void print_string(va_list args)
 }
 
 /**
- * print_all - Affiche des données de différents types.
- * @format: Une chaîne qui décrit les types des arguments à afficher.
+ * print_all - Prints anything based on the format string.
+ * @format: A string of characters representing the argument types.
  */
 void print_all(const char * const format, ...)
 {
 	va_list args;
 	unsigned int i = 0;
+	unsigned int j = 0;
 
+	/* Function pointers array to handle each type */
 	void (*functions[])(va_list) = {
 		print_char, print_int, print_float, print_string
 	};
-
 	char types[] = {'c', 'i', 'f', 's'};
 
 	va_start(args, format);
 
+	/* Iterate through the format string */
 	while (format && format[i])
 	{
-		unsigned int j = 0;
+		j = 0;
 
+		/* Check the type and call the respective function */
 		while (types[j] != '\0')
 		{
 			if (format[i] == types[j])
 			{
-				functions[j](args);
-				if (format[i + 1] != '\0')
+				if (i > 0)
 					printf(", ");
+				functions[j](args);
 				break;
 			}
 			j++;
@@ -83,6 +80,8 @@ void print_all(const char * const format, ...)
 		i++;
 	}
 
-	printf("\n");
 	va_end(args);
+
+	printf("\n");
 }
+
