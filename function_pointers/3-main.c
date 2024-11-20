@@ -1,38 +1,45 @@
-#include "3-calc.h"
 #include <stdio.h>
-#include <unistd.h>  /* For write */
+#include <stdlib.h>
+#include "3-calc.h"
 
 /**
- * main - Entry point to the program
- * @argc: Argument count
- * @argv: Argument vector
- * Return: Always 0 (Success)
+ * main - Entry point of the calculator program.
+ * @argc: Number of arguments.
+ * @argv: Array of arguments.
+ *
+ * Return: 0 if successful, 98 if incorrect number of arguments,
+ * 99 if invalid operator, 100 if division/modulus by zero.
  */
 int main(int argc, char *argv[])
 {
-	int num1, num2;
-	int (*operation)(int, int);
+	int num1, num2, result;
+	int (*op_func)(int, int);
 
-	if (argc != 4)  /* Check for incorrect number of arguments */
+	if (argc != 4)
 	{
-		write(2, "Error\n", 6);
-		exit(98);
+		printf("Error\n");
+		return (98);
 	}
 
-	num1 = atoi(argv[1]);  /* Convert first number to integer */
-	num2 = atoi(argv[3]);  /* Convert second number to integer */
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[3]);
 
-	operation = get_op_func(argv[2]);  /* Get the function pointer */
+	op_func = get_op_func(argv[2]);
 
-	if (operation == NULL)  /* Check for invalid operator */
+	if (op_func == NULL)
 	{
-		write(2, "Error\n", 6);
-		exit(99);
+		printf("Error\n");
+		return (99);
 	}
 
-	/* Perform the operation and print the result */
-	printf("%d\n", operation(num1, num2));
+	if ((num2 == 0) && (*argv[2] == '/' || *argv[2] == '%'))
+	{
+		printf("Error\n");
+		return (100);
+	}
 
+	result = op_func(num1, num2);
+	printf("%d\n", result);
 	return (0);
 }
 
