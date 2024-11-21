@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * main - Entry point for the calculator program.
+ * @argc: Number of command-line arguments.
+ * @argv: Array of command-line argument strings.
+ *
+ * Return: resultat
+ */
+
 int main(int argc, char *argv[])
 {
 	int num1, num2, result;
