@@ -1,9 +1,10 @@
-#include <stdarg.h>
 #include <stdio.h>
+#include <stdarg.h>
+#include "variadic_functions.h"
 
 /**
- * print_char - Prints a character.
- * @args: The list of arguments.
+ * print_char - prints a character
+ * @args: list of arguments
  */
 void print_char(va_list args)
 {
@@ -11,8 +12,8 @@ void print_char(va_list args)
 }
 
 /**
- * print_int - Prints an integer.
- * @args: The list of arguments.
+ * print_int - prints an integer
+ * @args: list of arguments
  */
 void print_int(va_list args)
 {
@@ -20,8 +21,8 @@ void print_int(va_list args)
 }
 
 /**
- * print_float - Prints a float.
- * @args: The list of arguments.
+ * print_float - prints a float
+ * @args: list of arguments
  */
 void print_float(va_list args)
 {
@@ -29,59 +30,63 @@ void print_float(va_list args)
 }
 
 /**
- * print_string - Prints a string.
- * @args: The list of arguments.
+ * print_string - prints a string
+ * @args: list of arguments
  */
 void print_string(va_list args)
 {
-	char *s = va_arg(args, char *);
+	char *str = va_arg(args, char*);
 
-	if (s == NULL)
-		printf("(nil)");
+	if (str)
+	{
+		printf("%s", str);
+	}
 	else
-		printf("%s", s);
+	{
+		printf("(nil)");
+	}
 }
 
 /**
- * print_all - Prints anything based on the format string.
- * @format: A string of characters representing the argument types.
+ * print_all - prints anything depending on the format
+ * @format: list of types of arguments passed to the function
  */
 void print_all(const char * const format, ...)
 {
 	va_list args;
 	unsigned int i = 0;
-	unsigned int j = 0;
-
-	/* Function pointers array to handle each type */
-	void (*functions[])(va_list) = {
-		print_char, print_int, print_float, print_string
-	};
-	char types[] = {'c', 'i', 'f', 's'};
+	int printed = 0;
 
 	va_start(args, format);
 
-	/* Iterate through the format string */
-	while (format && format[i])
+	while (format && format[i] != '\0')
 	{
-		j = 0;
-
-		/* Check the type and call the respective function */
-		while (types[j] != '\0')
+		if (printed)
 		{
-			if (format[i] == types[j])
-			{
-				if (i > 0)
-					printf(", ");
-				functions[j](args);
-				break;
-			}
-			j++;
+			printf(", ");
 		}
+		switch (format[i])
+		{
+			case 'c':
+				print_char(args);
+				break;
+			case 'i':
+				print_int(args);
+				break;
+			case 'f':
+				print_float(args);
+				break;
+			case 's':
+				print_string(args);
+				break;
+			default:
+				break;
+		}
+		printed = 1;
 		i++;
 	}
 
 	va_end(args);
-
 	printf("\n");
 }
 
