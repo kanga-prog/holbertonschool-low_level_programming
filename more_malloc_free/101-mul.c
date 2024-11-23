@@ -2,56 +2,43 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-/**
- * is_digit - Checks if a string contains only digits.
- * @str: The string to check.
- *
- * Return: 1 if the string is composed of digits, 0 otherwise.
- */
-int is_digit(char *str)
+/* Fonction pour vérifier si une chaîne est composée uniquement de chiffres */
+int is_digit_string(char *str)
 {
-	int i;  /* Declare i outside of the for loop */
-
-	for (i = 0; str[i] != '\0'; i++)  /* Loop through each character */
+	while (*str)
 	{
-		if (!isdigit(str[i]))  /* Check if the character is not a digit */
-		{
-			return (0);  /* Return 0 if a non-digit character is found */
-		}
+		if (!isdigit(*str))
+			return 0;  /* Retourne 0 si un caractère numerique*/
+		str++;
 	}
-	return (1);  /* Return 1 if all characters are digits */
+	return 1;  /* Retourne 1 si tous les caractères sont des chiffres */
 }
 
-/**
- * main - Multiplies two positive numbers passed as arguments.
- * @argc: The number of command line arguments.
- * @argv: The array of command line arguments.
- *
- * Return: 0 on success, exits with status 98 if there is an error.
- */
+/* Fonction pour multiplier deux nombres */
+int multiply(char *num1, char *num2)
+{
+	return atoi(num1) * atoi(num2);
+}
+
 int main(int argc, char *argv[])
 {
-	char command[1024];  /* Declare command at the top of the main function */
-
-	/* Check if the number of arguments is correct */
+	/* Vérification du nombre correct d'arguments */
 	if (argc != 3)
 	{
 		printf("Error\n");
 		exit(98);
 	}
 
-	/* Check if both arguments are valid numbers */
-	if (!is_digit(argv[1]) || !is_digit(argv[2]))
+	/* Vérification que les deux arguments sont des nombres valides */
+	if (!is_digit_string(argv[1]) || !is_digit_string(argv[2]))
 	{
 		printf("Error\n");
 		exit(98);
 	}
 
-	/* Construct the command to multiply the numbers using bc */
-	snprintf(command, sizeof(command), "echo '%s * %s' | bc", argv[1], argv[2]);
+	/* Multiplie les deux nombres et affiche le résultat */
+	printf("%d\n", multiply(argv[1], argv[2]));
 
-	/* Execute the command using system() and print the result */
-	system(command);
-
-	return (0);
+	return 0;
 }
+

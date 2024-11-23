@@ -73,4 +73,5 @@ int *array_range(int min, int max);
 char *argstostr(int ac, char **av);
 char **strtow(char *str);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+ int is_palindrome(char *s);
 #endif/* main_h */
