@@ -9,23 +9,23 @@
  */
 size_t print_list(const list_t *h)
 {
-        size_t count = 0;
+	size_t count = 0;
 
-        /* Traverse through the linked list */
-        while (h != NULL)
-        {
-                /* If the string in the node is NULL, print [0] (nil) */
-                if (h->str == NULL)
-                        printf("[0] (nil)\n");
-                else
-                        /* Otherwise, print the string and its length */
-                        printf("[%u] %s\n", h->len, h->str);
+	while (h != NULL)
+	{
+		if (h->str == NULL)
+		{
+			printf("[0] (nil)\n");
+		}
+		else
+		{
+			printf("[%u] %s\n", h->len, h->str);
+		}
 
-                /* Move to the next node */
-                h = h->next;
-                count++;
-        }
+		h = h->next;
+		count++;
+	}
 
-        return (count);
+	return (count);
+}
 
-} 
