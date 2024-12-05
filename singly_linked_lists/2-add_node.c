@@ -1,40 +1,85 @@
+#include <stdio.h>
 #include "lists.h"
-#include <string.h>
+#include <stddef.h>
 #include <stdlib.h>
 
 /**
- * add_node - Adds a new node at the beginning of a list_t list.
- * @head: Double pointer to the head of the list.
- * @str: The string to be duplicated and stored in the new node.
+ * _strlen - function to get length of a string
+ * @s: string
  *
- * Return: The address of the new element, or NULL if it failed.
+ * Return: Length of a array of characters
+ */
+int _strlen(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+/**
+ * _strdup - returns a pointer to a newly allocated space in memory, which
+ * contains a copy of the string given as a parameter.
+ * @str: string to copy
+ *
+ * Return: Pointer
+ */
+char *_strdup(const char *str)
+{
+	int l = 0, i;
+	char *s;
+
+	if (str == NULL)
+		return (0);
+
+	while (*(str + l))
+		l++;
+
+	s = malloc(sizeof(char) * l + 1);
+
+	if (s == 0)
+		return (0);
+
+	for (i = 0; i <= l; i++)
+		*(s + i) = *(str + i);
+	return (s);
+}
+/**
+ * add_node - adds a new node at the beginning of a singly linked list
+ * @head: pointer to head of singly linked list
+ * @str: string to add as new node in list
+ *
+ * Return: the address of the new element, or NULL if it failed
  */
 list_t *add_node(list_t **head, const char *str)
 {
-	list_t *new_node;
+	char *tmp;
+	list_t *new_node = malloc(sizeof(list_t));
 
-	/* Allocate memory for the new node */
-	new_node = malloc(sizeof(list_t));
-	if (new_node == NULL)
+	if (new_node == 0)
+		return (0);
+
+	if (str == 0)
 	{
-		return (NULL);  /* Return NULL if memory allocation fails */
+		new_node->str = 0;
+		new_node->len = 0;
+	}
+	else
+	{
+		tmp = _strdup(str);
+		if (tmp == 0)
+		{
+			free(new_node);
+			return (0);
+		}
+		new_node->str = tmp;
+		new_node->len = _strlen(tmp);
 	}
 
-	/* Duplicate the string and assign it to the new node */
-	new_node->str = strdup(str);
-	if (new_node->str == NULL)
-	{
-		free(new_node);  /* Free the node if strdup fails */
-		return (NULL);    /* Return NULL if strdup fails */
-	}
-
-	/* Set the length of the string */
-	new_node->len = strlen(str);
-
-	/* Insert the new node at the beginning of the list */
-	new_node->next = *head;  /* Point the new node to the current head */
-	*head = new_node;        /* Update the head to point to the new node */
-
-	return (new_node);        /* Return the new node */
+	new_node->next = *head;
+	*head = new_node;
+	return (new_node);
 }
-
