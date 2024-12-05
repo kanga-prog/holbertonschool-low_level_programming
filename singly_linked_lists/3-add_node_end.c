@@ -1,50 +1,99 @@
+#include <stdio.h>
 #include "lists.h"
-#include <string.h>
+#include <stddef.h>
 #include <stdlib.h>
 
+
+
 /**
- * add_node_end - ajoute un nouveau nœud à la fin de la liste
- * @head: pointeur vers le pointeur du premier nœud de la liste
- * @str: chaîne de caractères à ajouter au nœud
+ * _strlen - function to get length of a string
+ * @s: string
  *
- * Return: l'adresse du nouveau nœud, ou NULL si l'échec
+ * Return: Length of a array of characters
+ */
+int _strlen(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+/**
+ * _strdup - returns a pointer to a newly allocated space in memory, which
+ * contains a copy of the string given as a parameter.
+ * @str: string to copy
+ *
+ * Return: Pointer
+ */
+char *_strdup(const char *str)
+{
+	int l = 0, i;
+	char *s;
+
+	if (str == NULL)
+		return (0);
+
+	while (*(str + l))
+		l++;
+
+	s = malloc(sizeof(char) * l + 1);
+
+	if (s == 0)
+		return (0);
+
+	for (i = 0; i <= l; i++)
+		*(s + i) = *(str + i);
+	return (s);
+}
+
+/**
+ * add_node_end - adds a new node to a singly linked list at the end of it
+ * @head: pointer to head of the singly linked list_t
+ * @str: string to add to the new node
+ *
+ * Return: the address of the new element, or NULL if it failed
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new_node, *temp;
+	char *tmp;
+	list_t *tmph;
+	list_t *new_node = malloc(sizeof(list_t));
 
-	/* Allocation d'un nouveau nœud */
-	new_node = malloc(sizeof(list_t));
-	if (new_node == NULL)
-		return (NULL); /* Si l'allocation échoue, on retourne NULL */
+	if (new_node == 0)
+		return (0);
 
-	/* Duplication de la chaîne */
-	new_node->str = strdup(str);
-	if (new_node->str == NULL)
+	tmph = *head;
+	if (str == 0)
 	{
-		free(new_node);
-		return (NULL);
+		new_node->str = 0;
+		new_node->len = 0;
 	}
+	else
+	{
+		tmp = _strdup(str);
+		if (tmp == 0)
+		{
+			free(new_node);
+			return (0);
+		}
+		new_node->str = tmp;
+		new_node->len = _strlen(tmp);
+	}
+	new_node->next = 0;
 
-	new_node->len = strlen(str);  /* Calcul de la longueur de la chaîne */
-	new_node->next = NULL;
-
-	/* Si la liste est vide, on place le nouveau nœud comme premier élément */
-	if (*head == NULL)
+	if (tmph == 0)
 	{
 		*head = new_node;
 	}
 	else
 	{
-		/* Sinon, on parcourt la liste jusqu'au dernier nœud */
-		temp = *head;
-		while (temp->next != NULL)
-			temp = temp->next;
-
-		/* On relie le dernier nœud au nouveau nœud */
-		temp->next = new_node;
+		while (tmph->next != 0)
+			tmph = tmph->next;
+		tmph->next = new_node;
 	}
-
-	return (new_node); /* Retourne l'adresse du nouveau nœud */
+	return (new_node);
 }
-
