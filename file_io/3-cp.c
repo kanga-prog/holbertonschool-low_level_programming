@@ -1,104 +1,70 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-
-#define BUFFER_SIZE 1024
-
-/**
- * copy_file - copies the content of one file to another
- * @file_from: the source file to copy from
- * @file_to: the destination file to copy to
- *
- * Return: 0 on success, or exit on failure with an appropriate error code
- */
-void copy_file(const char *file_from, const char *file_to);
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * main - entry point of the program
- * @argc: number of arguments passed to the program
- * @argv: array of argument strings
+ * main - program that copies the content of a file to another file
  *
- * Return: 0 on success, or exits with appropriate error code
+ * @argc: Counts the number of parameters that go into main
+ * @argv: Pointer of array of pointers containing strings entering main
+ * Return: Always 0 on (Success)
+ *
+ * if the number of argument is not the correct one, exit with code 97
+ * and print Usage: cp file_from file_to, followed by a new line,
+ * on the POSIX standard error
+ *
+ * if file_from does not exist, or if you can not read it, exit with
+ * code 98 and print Error: Can't read from file NAME_OF_THE_FILE,
+ * followed by a new line, on the POSIX standard error
+ *
+ * if you can not close a file descriptor ,
+ * exit with code 100 and print Error:
+ * Can't close fd FD_VALUE, followed by a new line,
+ * on the POSIX standard error
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
+	int fdfrom, fdto, checkr, checkw, checkc1, checkc2;
+	char buff[1024];
+
 	if (argc != 3)
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
+
+	fdfrom = open(argv[1], O_RDONLY);
+	if (fdfrom == -1)
 	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
-
-	copy_file(argv[1], argv[2]);
-
-	return (0);
-}
-
-/**
- * copy_file - copies content from one file to another
- * @file_from: the source file to copy from
- * @file_to: the destination file to copy to
- *
- * This function reads from file_from in chunks of 1024 bytes and writes
- * to file_to. It handles errors with specific exit codes.
- */
-void copy_file(const char *file_from, const char *file_to)
-{
-	int fd_from, fd_to, bytes_read, bytes_written;
-	char buffer[BUFFER_SIZE];
-
-	/* Open file_from for reading */
-	fd_from = open(file_from, O_RDONLY);
-	if (fd_from == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
 
-	/* Open file_to for writing */
-	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (fd_to == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file_to);
-		close(fd_from);
-		exit(99);
-	}
+	fdto = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (fdto == -1)
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
 
-	/* Read from file_from and write to file_to */
-	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+
+	while ((checkr = read(fdfrom, buff, 1024)) > 0)
 	{
-		bytes_written = write(fd_to, buffer, bytes_read);
-		if (bytes_written == -1)
+		checkw = write(fdto, buff, checkr);
+		if (checkw != checkr)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file_to);
-			close(fd_from);
-			close(fd_to);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99);
 		}
 	}
-
-	if (bytes_read == -1)
+	if (checkr == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		close(fd_from);
-		close(fd_to);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
+	checkc1 = close(fdfrom);
+	if (checkc1 == -1)
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fdfrom), exit(100);
+	checkc2 = close(fdto);
+	if (checkc2 == -1)
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fdto), exit(100);
 
-	/* Close the file descriptors */
-	if (close(fd_from) == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
-		close(fd_to);
-		exit(100);
-	}
-
-	if (close(fd_to) == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-		exit(100);
-	}
+	return (0);
 }
-
