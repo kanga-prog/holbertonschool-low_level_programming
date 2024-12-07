@@ -1,44 +1,41 @@
+#include <stdio.h>
 #include "main.h"
+#include <unistd.h>
 
 /**
- * rev_bin - prints binary representation of number with & and Shift Right
- * operators, but uses recursion to reverse the result
+ * print_binary - Prints the binary representation of a number
+ * @n: The number to be printed in binary
  *
- * @n: decimal number
- * @check: checks for special case number 0
+ * Description: This function takes an unsigned long integer `n` and prints
+ * its binary representation to standard output. If the number is zero,
+ * the function prints '0'.
  *
- * Return: No return
+ * Return: None.
  */
-void rev_bin(unsigned long int n, int check)
+void print_binary(unsigned long int n)
 {
-	if (check == 1)
+	int flag = 0;
+	unsigned long int i;
+
+	/* Special case: If the number is 0, print "0"*/
+	if (n == 0)
 	{
 		_putchar('0');
 		return;
 	}
 
-	if (n == 0)
-		return;
-
-	rev_bin(n >> 1, check);
-
-	if ((n & 1) == 0)
-		_putchar('0');
-
-	if ((n & 1) == 1)
-		_putchar('1');
+	/* Iterate over the bits of the number*/
+	for (i = sizeof(n) * 8 - 1; i != (unsigned long int)-1; i--)
+	{
+		if (n & (1UL << i))  /* Check if the i-th bit is 1*/
+		{
+			_putchar('1');
+			flag = 1;  /* Mark that we found a 1*/
+		}
+		else if (flag)  /* Once we've found a 1, print subsequent 0s*/
+		{
+			_putchar('0');
+		}
+	}
 }
-/**
- * print_binary - prints the binary representation of a number
- * @n: base 10 number
- *
- * Return: No return
- *
- */
-void print_binary(unsigned long int n)
-{
-	if (n == 0)
-		rev_bin(n, 1);
-	else
-		rev_bin(n, 0);
-}
+
