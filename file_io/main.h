@@ -1,0 +1,17 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+/* Prototype de la fonction _putchar, généralement utilisée pour l'affichage */
+int _putchar(char c);
+
+/* Prototype de la fonction read_textfile */
+ssize_t read_textfile(const char *filename, size_t letters);
+
+#endif /* MAIN_H */
+
