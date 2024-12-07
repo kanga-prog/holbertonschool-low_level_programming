@@ -5,6 +5,19 @@
 #include <stdlib.h>
 #include "main.h"
 
+/**
+ * read_textfile - Lit un fichier texte et l'affiche à la sortie standard
+ * @filename: Le nom du fichier à lire.
+ * @letters: Le nombre de lettres à lire et à afficher depuis le fichier.
+ *
+ * Description: Cette fonction ouvre un fichier en mode lecture seule, lit
+ * un nombre spécifié de caractères du fichier et les affiche sur la sortie
+ * standard. Si une erreur se produit (par exemple, si le fichier ne peut pas
+ * être ouvert, si la lecture ou l'écriture échoue), elle retourne 0.
+ * Elle retourne le nombre réel de caractères lus et affichés cas d'succès.
+ *
+ * Return: Le nombre réel de caractères lus et affichés, ou 0,cas d'erreur.
+ */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
